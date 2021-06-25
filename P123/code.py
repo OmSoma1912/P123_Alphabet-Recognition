@@ -14,7 +14,8 @@ import os, ssl, time
 if(not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None)):
     ssl._create_default_https_context = ssl._create_unverified_context
 
-X, y = fetch_openml('image.npz', version = 1, return_X_y = True)
+X = np.load('image.npz')['arr_0']
+y = pd.read_csv('labels.csv')["labels"]
 print(pd.Series(y).value_counts())
 classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 nclasses = len(classes)
